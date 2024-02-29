@@ -13,7 +13,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: var(--page-height);
   align-items: center;
 }
 

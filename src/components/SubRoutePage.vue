@@ -21,9 +21,7 @@
       </el-menu>
     </div>
     <div class="content" ref="contentRef">
-      <UseWatermark text="张洪坤1301884419@qq.com" fontSize="20">
-        <router-view></router-view>
-      </UseWatermark>
+      <router-view></router-view>
     </div>
     <div class="anchor" v-if="anchorMenu?.length">
       <ul>
@@ -51,9 +49,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick, inject, computed, watch, onUnmounted } from "vue";
+import { ref, nextTick, watch, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
-import UseWatermark from "@/components/UseWatermark.vue";
 import { findPageAnchorMenu } from '@/utils/util.js';
 
 
