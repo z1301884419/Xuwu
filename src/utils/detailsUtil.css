@@ -1,0 +1,82 @@
+
+  .vn-color-red{
+    color: red
+  }
+  .vn-color-blue{
+    color: blue
+  }
+  .vn-color-yellow{
+    color: yellow
+  }
+  .vn-color-green{
+    color: green
+  }
+  .vn-color-black{
+    color: black
+  }
+  .vn-color-white{
+    color: white
+  }
+  .vn-color-purple{
+    color: purple
+  }
+  .vn-color-orange{
+    color: orange
+  }
+  .vn-color-cyan{
+    color: cyan
+  }
+  .vn-text-type-h{
+    font-size: 24px;
+    font-weight: bolder;
+    display: inline-block;
+    margin: 8px 0;
+  }
+  .vn-text-type-h2{
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 8px 0;
+  }
+  .vn-text-type-normal{
+    font-size: 16px;
+  }
+  .vn-text-type-bold{
+    font-weight: bold;
+  }
+  .vn-text-type-light{
+    font-weight: lighter;
+  }
+  .vn-text-shape-italic{
+    font-style: italic;
+  }
+  .vn-text-shape-underline{
+    text-decoration: underline
+  }
+  .vn-background-color-red{
+    background-color: red
+  }
+  .vn-background-color-blue{
+    background-color: blue
+  }
+  .vn-background-color-yellow{
+    background-color: yellow
+  }
+  .vn-background-color-green{
+    background-color: green
+  }
+  .vn-background-color-black{
+    background-color: black
+  }
+  .vn-background-color-white{
+    background-color: white
+  }
+  .vn-background-color-purple{
+    background-color: purple
+  }
+  .vn-background-color-orange{
+    background-color: orange
+  }
+  .vn-background-color-cyan{
+    background-color: cyan
+  }

@@ -1,0 +1,22 @@
+:root,body,#app{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
+}
+
+.title{
+  font-weight: 600px;
+  font-size: 20px;
+}
+.desc{
+  font-weight: 400px;
+  font-size: 14px;
+}
+ul,li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
