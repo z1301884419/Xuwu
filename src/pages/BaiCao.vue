@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    45245646
     <p>112312321321321321</p>
   </div>
 </template>
@@ -47,18 +48,8 @@ nextTick(() => {
 <style lang="less" scoped>
 .box {
   position: relative;
+  height: var(--page-height);
+
 }
 
-.item {
-  transition: 1s;
-}
-
-.item:nth-child(1) {
-  height: 50px;
-  width: 500px;
-}
-
-.item:nth-child(n+2) {
-  width: 100px;
-}
 </style>

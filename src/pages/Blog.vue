@@ -1,38 +1,32 @@
 <template>
   <div class="root-container">
     <TopSearch :v-model="searchStr" @searchHandle="searchHandle" />
-    <UseWatermark text="仅供学习" fontSize="20">
-      <ul class="container">
-        <li v-for="item in pageData" :key="item.id" class="li-item" @click="itemClickHandle(item.id)">
-          <div class="title item-title">{{ item?.title }}</div>
-          <div class="desc item-desc">{{ item?.desc }}</div>
-          <div class="item-bottom">
-            <span>我的阅读量</span>
-            <el-tooltip effect="light" content="数量的统计存在本地缓存中，清除浏览器缓存将会重置为0" placement="right">
-              <el-icon>
-                <QuestionFilled color="rgb(200,200,200)" />
-              </el-icon>
-            </el-tooltip>:
-            <span class="read-count">{{ readCount[item.id] || '0' }}</span>
-            <span class="card-create-time">{{ item.createTime || '暂无' }}</span>
-          </div>
-        </li>
-      </ul>
-    </UseWatermark>
+    <ul class="container">
+      <li v-for="item in pageData" :key="item.id" class="li-item" @click="itemClickHandle(item.id)">
+        <div class="title item-title">{{ item?.title }}</div>
+        <div class="desc item-desc">{{ item?.desc }}</div>
+        <div class="item-bottom">
+          <span>我的阅读量</span>
+          <el-tooltip effect="light" content="数量的统计存在本地缓存中，清除浏览器缓存将会重置为0" placement="right">
+            <el-icon>
+              <QuestionFilled color="rgb(200,200,200)" />
+            </el-icon>
+          </el-tooltip>:
+          <span class="read-count">{{ readCount[item.id] || '0' }}</span>
+          <span class="card-create-time">{{ item.createTime || '暂无' }}</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, provide } from 'vue'
-import { useRouter } from 'vue-router'
 import { QuestionFilled } from '@element-plus/icons-vue'
 import { setLocal, getLocal } from '@/utils/util.js'
 import TopSearch from '@/components/TopSearch.vue'
-import UseWatermark from '@/components/UseWatermark.vue'
 import vueData from '@/utils/vueData.js'
 
-
-const router = useRouter()
 
 const pageData = ref(vueData)
 
@@ -63,7 +57,7 @@ function itemClickHandle(list_id: any) {
   // 跳转到详情页
   if (getLocal('detailsIsOpen') !== 'true') {
     window.open(location.origin + '/#/details/' + list_id)
-  }else{
+  } else {
     channel.postMessage(list_id)
   }
 

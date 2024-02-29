@@ -18,11 +18,10 @@
           <Edit />
         </el-icon>
       </div>
-      <UseWatermark text="仅供学习" fontSize="16"  class="node-show">
-        <div v-if="detailsData?.html">
-            <div class="node-text" ref="vueNodeRef" :contenteditable="editVisible" v-html="detailsData?.html" @mouseup="htmlMouseup"></div>
-        </div>
-      </UseWatermark>
+      <div v-if="detailsData?.html" class="node-show">
+        <div class="node-text" ref="vueNodeRef" :contenteditable="editVisible" v-html="detailsData?.html"
+          @mouseup="htmlMouseup"></div>
+      </div>
       <div ref="operatePlaceRef" class="node-operate_place"></div>
       <div ref="operateRef" v-if="editVisible && detailsData?.html" class="node-operate">
         <div class="operate-color">
@@ -66,7 +65,6 @@ import { Edit } from '@element-plus/icons-vue'
 import vueData from '@/utils/vueData.js';
 import { debounce, setLocal } from '@/utils/util.js';
 import { operateObj, rmdBetweenNode, mergeHtml, mergeCalssName } from '@/utils/detailsUtil.js'
-import UseWatermark from '@/components/UseWatermark.vue'
 
 const route = useRoute()
 
@@ -75,14 +73,14 @@ const imgArr = ['../src/assets/sjbizhi2.jpg', '../src/assets/sjbizhi3.jpg', '../
 const dataId = ref<any>(undefined);
 // 建立的标签页通信
 const channel = new BroadcastChannel('details');
-channel.onmessage = (e)=>{
+channel.onmessage = (e) => {
   dataId.value = e.data;
-  location.hash = '#/details/' +  e.data;
+  location.hash = '#/details/' + e.data;
 }
 
 // 通过id拿到详情数据
-const detailsData = computed(()=>{
-  return vueData.filter( (i: any) => i.id == dataId.value)[0] || {}
+const detailsData = computed(() => {
+  return vueData.filter((i: any) => i.id == dataId.value)[0] || {}
 })
 
 /** editIcon */
@@ -302,17 +300,17 @@ watchEffect(() => {
   resize()
 }, { flush: 'post' })
 
-onMounted(()=>{
+onMounted(() => {
   setLocal('detailsIsOpen', 'true');
-  if(!dataId.value){
+  if (!dataId.value) {
     dataId.value = route.params.id
   }
- })
-nextTick(()=>{
+})
+nextTick(() => {
   debounce(resize)()
 })
 window.onresize = debounce(resize);
-window.onbeforeunload = ()=>{
+window.onbeforeunload = () => {
   setLocal('detailsIsOpen', 'false');
   channel.close();
 }
@@ -397,9 +395,11 @@ window.onbeforeunload = ()=>{
     margin-left: 150px;
     margin-bottom: 10px;
     min-height: 400px;
-    .node-text{
+
+    .node-text {
       outline: none;
-      :deep(code){
+
+      :deep(code) {
         display: block;
         font-weight: 600;
         font-size: 16px;
