@@ -72,10 +72,8 @@ const { menuData } = defineProps({
 
 const route = useRouter();
 
-const nav = ref(inject('nav'))
-
 let pagePath = computed(()=>{
-  return nav?.value?.split('/')[2];
+  return location.hash.split('/')[2];
 })
 
 /** 锚点信息 */
@@ -210,7 +208,6 @@ function scrolltoAnchor(from:any) {
 .nav {
   .sidecss;
   width: max-content;
-
   .el-menu {
     height: calc(100vh - 110px);
     padding-top: 10px;

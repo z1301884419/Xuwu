@@ -35,8 +35,9 @@ const Header = {
   },
   computed: {
     nav(){
-      this.currentPage = '/'+inject('nav')?.value?.split('/')[1];
-      return inject('nav')?.value ? '/'+inject('nav')?.value?.split('/')[1] : '/home'
+      let anchor = location.hash.split('/')[1];
+      this.currentPage = anchor;
+      return '/'+anchor;
     }
   },
   watch: {

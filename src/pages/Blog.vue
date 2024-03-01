@@ -61,7 +61,6 @@ function itemClickHandle(list_id: any) {
   !isNaN(readCount.value[list_id]) ? readCount.value[list_id] += 1 : readCount.value[list_id] = 1
   setLocal('read-count', readCount.value)
   // 跳转到详情页
-  console.log(channel)
   if (getLocal('detailsIsOpen') !== 'true') {
     window.open(location.origin + '/#/details/' + list_id)
   }else{

@@ -5,6 +5,7 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import App from "@/App.vue";
 import router from "@/routers.ts";
+import { setLocal } from '@/utils/util.js'
 
 
 const app = createApp(App);
@@ -46,3 +47,5 @@ String.prototype.codePointLength = function () {
     }
     return this.length - codePointNum;
 };
+// 每次打开时设置
+setLocal('detailsIsOpen', 'false');
