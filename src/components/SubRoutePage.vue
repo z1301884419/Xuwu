@@ -72,9 +72,7 @@ const { menuData } = defineProps({
 
 const route = useRouter();
 
-let pagePath = computed(()=>{
-  return location.hash.split('/')[2];
-})
+const pagePath = ref(location.hash.split('/')[2])
 
 /** 锚点信息 */
 let anchorMenu = ref(findPageAnchorMenu(menuData, pagePath.value));
@@ -106,6 +104,7 @@ nextTick(() => {
 /**  选择菜单触发，更新导航栏地址，替换页面内容 */
 async function select(path: string) {
   await route.push(path)
+  pagePath.value = path;
   contentRef._value.scrollTop = 0;
 }
 /** 页面锚点跳转 */

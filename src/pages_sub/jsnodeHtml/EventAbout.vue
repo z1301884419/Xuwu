@@ -307,8 +307,12 @@ const keyboardPropData = [
     desc: '键盘中对应键位的键值。',
   },
   {
+    property: 'which',
+    desc: '键盘中对应键位的Unicode编码 (IE8之前不持支)。',
+  },
+  {
     property: 'charCode',
-    desc: '键盘中对应键位的Unicode编码，仅DOM支持。',
+    desc: '键盘中对应键位的Unicode编码，仅DOM支持 (Firefox浏览器的onkeypress事件中无效)。',
   },
   {
     property: 'target',

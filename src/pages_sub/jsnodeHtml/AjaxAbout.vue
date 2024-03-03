@@ -146,8 +146,8 @@ fetch('xxx?' + params, {
   }
 })(fetch)`"></div>
       </CodeArea>
-      <h4>fetch实现请求中断</h4>
-      fetch请求实现中断，需要使用AbortController来完成。
+      <h4>fetch实现请求中断（或请求超时）</h4>
+      fetch请求实现中断（或请求超时），需要使用AbortController来完成。
       <CodeArea>
         <div v-text="`const controller = new AbortController();
 const signal = controller.signal;

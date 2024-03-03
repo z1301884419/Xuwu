@@ -22,8 +22,8 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/baicao",
-    name: "识百草",
+    path: "/test",
+    name: "测试页",
     component: BaiCao,
   },
   {
