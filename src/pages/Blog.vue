@@ -77,7 +77,8 @@ li {
 
 .container {
   box-sizing: border-box;
-  margin: 70px 0px 70px 0px;
+  margin: 70px 0;
+  padding: 0 20px;
 
   .li-item:hover {
     box-shadow: 1px 1px 12px -8px rgb(5, 184, 238);

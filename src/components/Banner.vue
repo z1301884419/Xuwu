@@ -1,19 +1,18 @@
 <template>
-  <Swiper slides-per-view="auto" :grab-cursor="true">
-    <SwiperSlide>slide-1</SwiperSlide>
-    <SwiperSlide>slide-2</SwiperSlide>
-    <SwiperSlide>slide-3</SwiperSlide>
-    <SwiperSlide>slide-4</SwiperSlide>
-    <SwiperSlide>slide-5</SwiperSlide>
-    <SwiperSlide>slide-6</SwiperSlide>
-  </Swiper>
+  <el-carousel indicator-position="none" height="188px">
+    <el-carousel-item v-for="item in imgsURL" :key="item">
+      <el-image :src="item" fit="fill" />
+    </el-carousel-item>
+  </el-carousel>
 </template>
 
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css'
+import { useBannerStore } from '@/stores/bannerStore'
+import { toRef } from 'vue';
+const bannerStore = useBannerStore()
+const imgsURL = toRef(bannerStore.bannerImgs)
 </script>
 
-<style lang="sass" scoped> 
+<style lang="sass" scoped>
 
 </style>

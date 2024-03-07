@@ -185,6 +185,24 @@
         </el-table-column>
       </el-table>
     </section>
+    <!-- dragData -->
+    <section id="event_about_drag">
+      <h3>拖拽事件</h3>
+      <el-table :data="dragData" border>
+        <el-table-column label="事件名" min-width="100">
+          <template #default="props">
+            <div style="word-break:auto-phrase;">
+              {{ props.row.property }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="描述" min-width="300">
+          <template #default="props">
+            <div style="word-break:auto-phrase;" v-html="props.row.desc"></div>
+          </template>
+        </el-table-column>
+      </el-table>
+    </section>
     <!-- mediaData  -->
     <section id="event_about_media">
       <h3>多媒体（Media）事件</h3>
@@ -679,7 +697,7 @@ const mediaData = [
   },
   {
     property: 'progress',
-    desc: `事件在浏览器下载指定的视频/音频(audio/video)时触发。`,
+    desc: `事件在浏览器加载指定的视频/音频(audio/video)时触发。`,
   },
   {
     property: 'durationchange',

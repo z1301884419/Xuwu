@@ -137,7 +137,7 @@ export default {
 .el-main {
   margin-top: 60px;
   margin-bottom: 50px;
-  padding: 0 20px;
+  padding: 0;
   min-width: 400px;
 }
 </style>

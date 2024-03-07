@@ -100,8 +100,8 @@ setup函数中expose的使用方法：
     html: '',
   }, {
     id: '1004',
-    title: '',
-    desc: '',
+    title: 'git忽略文件大小写规则',
+    desc: 'git忽略文件大小写规则：git config core.ignorecase false',
     readCount: 0,
     createTime: '20223-06-02 20:00:00',
     html: ``,

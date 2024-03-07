@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, nextTick, onUnmounted, toRef, watch } from 'vue';
 import { useTimerStore } from '@/stores/timerStore.js'
+import { storeToRefs } from 'pinia';
 
 const props = defineProps(['doc'])
 const propdoc = toRef(props, 'doc')
-const timerStore = useTimerStore()
+const timerStore = storeToRefs(useTimerStore())
 
 /** 获取html结构 */
 const htmlDoc = computed(() => {

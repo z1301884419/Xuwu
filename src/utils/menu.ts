@@ -226,6 +226,7 @@ const jsnodeMenu = [
       {title: '鼠标事件', anchor: '#event_about_mouse'},
       {title: 'Frame/Objec事件', anchor: '#event_about_frame'},
       {title: '剪粘板事件/对象', anchor: '#event_about_clipboard'},
+      {title: '拖拽事件', anchor: '#event_about_drag'},
       {title: '多媒体事件', anchor: '#event_about_media'},
       {title: 'css动画事件', anchor: '#event_about_cssanimate'},
     ]
@@ -244,7 +245,17 @@ const jsnodeMenu = [
   },
 ]
 // 音乐播放器部分
-import { Music } from '@icon-park/vue-next';
+import { 
+Music,
+Star,
+VideoTwo,
+Fm,
+Like,
+CodeComputer,
+History,
+ListAdd,
+RecordDisc,
+} from '@icon-park/vue-next';
 import { shallowRef } from 'vue'; // 将动态组件注册为静态组件
 
 interface IMenuItem {
@@ -263,20 +274,22 @@ const musicMenu: IMenu[] = [
       {
         title: '推荐',
         path: 'music-recommend',
-        icon: shallowRef(Music) ,
+        icon: shallowRef(Star) ,
       },
       {
         title: '音乐馆',
         path: 'music-hall',
-        icon: shallowRef(Music) ,
+        icon: shallowRef(RecordDisc) ,
       },
       {
         title: '视频',
         path: 'music-video',
+        icon: shallowRef(VideoTwo) ,
       },
       {
         title: '电台',
         path: 'music-radio-station',
+        icon: shallowRef(Fm) ,
       },
     ]
   },
@@ -286,39 +299,37 @@ const musicMenu: IMenu[] = [
       {
         title: '我喜欢',
         path: 'music-like',
+        icon: shallowRef(Like) ,
       },
       {
         title: '本地歌曲',
         path: 'music-local',
+        icon: shallowRef(CodeComputer) ,
       },
       {
         title: '播放历史',
         path: 'music-history',
+        icon: shallowRef(History) ,
       },
       {
         title: '下载歌曲',
         path: 'music-download',
-      },
-      {
-        title: '试听列表',
-        path: 'music-audition',
-      },
-      {
-        title: '已购音乐',
-        path: 'music-payed',
+        icon: shallowRef(Music) ,
       },
     ]
   },
   {
-    title: '我创建的歌单',
+    title: '我的歌单',
     menuItem: [
       {
         title: '默认列表',
         path: 'music-sheet-default',
+        icon: shallowRef(ListAdd) ,
       },
       {
         title: '新建歌单',
         path: 'music-sheet-create',
+        icon: shallowRef(ListAdd) ,
       },
     ]
   },
