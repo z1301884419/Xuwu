@@ -243,7 +243,89 @@ const jsnodeMenu = [
     ]
   },
 ]
+// 音乐播放器部分
+import { Music } from '@icon-park/vue-next';
+import { shallowRef } from 'vue'; // 将动态组件注册为静态组件
+
+interface IMenuItem {
+  title: string;
+  path: string;
+  icon?: any;
+}
+interface IMenu {
+  title: string;
+  menuItem: IMenuItem[];
+}
+const musicMenu: IMenu[] = [
+  {
+    title: '在线音乐',
+    menuItem: [
+      {
+        title: '推荐',
+        path: 'music-recommend',
+        icon: shallowRef(Music) ,
+      },
+      {
+        title: '音乐馆',
+        path: 'music-hall',
+        icon: shallowRef(Music) ,
+      },
+      {
+        title: '视频',
+        path: 'music-video',
+      },
+      {
+        title: '电台',
+        path: 'music-radio-station',
+      },
+    ]
+  },
+  {
+    title: '我的音乐',
+    menuItem: [
+      {
+        title: '我喜欢',
+        path: 'music-like',
+      },
+      {
+        title: '本地歌曲',
+        path: 'music-local',
+      },
+      {
+        title: '播放历史',
+        path: 'music-history',
+      },
+      {
+        title: '下载歌曲',
+        path: 'music-download',
+      },
+      {
+        title: '试听列表',
+        path: 'music-audition',
+      },
+      {
+        title: '已购音乐',
+        path: 'music-payed',
+      },
+    ]
+  },
+  {
+    title: '我创建的歌单',
+    menuItem: [
+      {
+        title: '默认列表',
+        path: 'music-sheet-default',
+      },
+      {
+        title: '新建歌单',
+        path: 'music-sheet-create',
+      },
+    ]
+  },
+  
+]
 export {
   canvasMenu,
   jsnodeMenu,
+  musicMenu,
 }

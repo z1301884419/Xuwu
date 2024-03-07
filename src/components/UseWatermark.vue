@@ -53,7 +53,7 @@ const ob = new MutationObserver((entries) => {
       }
     } else {
       if (entry.target === markRef.value) {
-        console.log("修改");
+        // console.log("修改");
         addWatermark();
         return
       }
@@ -70,7 +70,7 @@ onMounted(() => {
   })
 })
 onUnmounted(() => {
-  ob.disconnect()
+  ob.disconnect();
 })
 
 /** 画水印 */
@@ -120,6 +120,6 @@ function addWatermark() {
 <style lang="less">
 .watermark {
   position: relative;
-  // 组件高度问题，设置100%则
+  // 组件高度问题
 }
 </style>

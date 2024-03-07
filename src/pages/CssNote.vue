@@ -189,7 +189,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: calc(100% - 50px);
+    width: 100%;
     top: 60px;
     left: 0;
     z-index: 2;

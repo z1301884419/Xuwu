@@ -8,6 +8,8 @@ const Canvas = () => import("./pages/Canvas.vue");
 const JsNode = () => import("./pages/JsNode.vue");
 import canvashtml from '@/pages_sub/canvasHtml/index';
 import jsnodehtml from '@/pages_sub/jsnodeHtml/index';
+import musichtml from '@/pages_sub/musicHtml/index';
+const Music = () => import("./pages/Music.vue");
 
 // 组件的懒加载是异步的，会扰乱组件的渲染执行顺序
 
@@ -163,6 +165,22 @@ const routes: Array<RouteRecordRaw> = [
         redirect: "/jsnode/introduce",
       },
     ],
+  },
+  {
+    path: "/music",
+    name: "音乐播放器",
+    component: Music,
+    redirect:"/music/music-recommend",
+    children: [
+      {
+        path: "music-recommend",
+        component: musichtml.Recommend,
+      },
+      {
+        path: "/music/:pathMatch(.*)*",
+        redirect: "/music/music-recommend",
+      },
+    ]
   },
   {
     path: "/:pathMatch(.*)*",

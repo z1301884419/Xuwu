@@ -22,12 +22,5 @@ route.afterEach(() => {
 </script>
 
 <style scoped>
-  .watermark{
-    position: fixed;
-    height: calc(100% - 110px);
-    width: 100%;
-    top: 50px;
-    z-index: -999;
-  }
 </style>
 

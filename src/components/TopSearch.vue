@@ -43,7 +43,7 @@ import { Search } from '@element-plus/icons-vue'
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: calc(100% - 20px);
+    width: 100%;
     top: 60px;
     left: 0;
     z-index: 9999;

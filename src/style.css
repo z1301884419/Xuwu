@@ -1,6 +1,7 @@
 /* css全局变量 */
 :root{
   --page-height: calc(100vh - 110px);
+  --theme: rgb(255,255,255);
 }
 
 :root,body,#app{

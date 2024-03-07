@@ -8,35 +8,7 @@
 <script lang="ts" setup>
 import { ref, nextTick } from "vue";
 
-const myFetch = (function (fetchFunc) {
-  return (url:any, options: any) => {
-    // 这里拦截请求
-    console.log(url, options)
-    if ('请求不通过') {
-      return new Promise(()=>{
-        throw '请求不通过'
-      });
-    }
-    return fetchFunc(url, options)
-      .then((response) => {
-        //console.log(response)
-        // 这里做响应拦截
-        if (response.ok == false) {
-          alert('请求失败')
-        }
-        return response;
-      })
-      .catch(error => {
-        throw error;
-      })
-  }
-})(fetch)
 
- myFetch('/aaa', {
-  method: 'GET'
-}).then((res)=>{
-  console.log(res)
-})
 
 nextTick(() => {
 
@@ -49,7 +21,12 @@ nextTick(() => {
 .box {
   position: relative;
   height: var(--page-height);
-
+  background: red;
+  width: max-content;
+  p{
+    min-width: 992px;
+    background: blue;
+  }
 }
 
 </style>
