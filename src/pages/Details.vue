@@ -68,8 +68,11 @@ import { operateObj, rmdBetweenNode, mergeHtml, mergeCalssName } from '@/utils/d
 
 const route = useRoute()
 
-const imgArr = ['../src/assets/sjbizhi2.jpg', '../src/assets/sjbizhi3.jpg', '../src/assets/sjbizhi4.jpg', '../src/assets/sjbizhi5.jpg']
-
+function getImageUrl(name:string) {
+  return new URL(`../static/${name}`, import.meta.url).href
+}
+const imgArr = [getImageUrl('sjbizhi2.jpg'), getImageUrl('sjbizhi3.jpg'), getImageUrl('sjbizhi4.jpg'), getImageUrl('sjbizhi5.jpg')]
+console.log(imgArr)
 const dataId = ref<any>(undefined);
 // 建立的标签页通信
 const channel = new BroadcastChannel('details');

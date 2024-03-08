@@ -22,13 +22,14 @@
 // 选项式
 <script lang="ts">
 import { routes } from '@/routers.ts'
+import logoURL from '@/static/bizhi4.jpg'
 
 // header 
 const Header = {
   data() {
     return {
       currentPage: '/home',
-      routes: routes.filter(item => item.name)
+      routes: routes.filter(item => item.name),
     }
   },
   methods: {
@@ -51,7 +52,7 @@ const Header = {
   template: `
   <div class="header">
     <div class="logo">
-      <el-image style="width: 58px; height: 58px" src="../src/assets/bizhi4.jpg" fit="cover" />
+      <el-image style="width: 58px; height: 58px" src="${logoURL}" fit="cover" />
     </div>
     <div class="nav">
       <el-menu

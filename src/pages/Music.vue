@@ -4,7 +4,7 @@
       <!-- 左边导航栏 -->
       <nav class="main-left">
         <div class="user">
-          <img class="user-avatar" src="@/assets/kedaya.jpeg" />
+          <img class="user-avatar" :src="avatarURL" />
           <span class="user-name">歪比巴布</span>
         </div>
         <div v-for="item in menu" :key="item.title">
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { musicMenu } from '@/utils/menu.ts'
 import MusicFooter from '@/components/MusicFooter.vue'
+import avatarURL from '@/static/kedaya.jpeg'
 import { ref } from 'vue';
 
 /** 导航栏数据 */

@@ -56,6 +56,9 @@
 <script lang="ts" setup>
 import { nextTick, ref } from 'vue';
 import CodeArea from '@/components/CodeArea.vue'
+
+import picture1URL from '@/static/picture1.webp'
+
 const canvasRef1 = ref<Element>();
 const canvasRef2 = ref<Element>();
 const canvasRef3 = ref<Element>();
@@ -66,7 +69,7 @@ nextTick(() => {
   canvasRef1._value.height = 400;
   canvasRef1._value.style.boxShadow = '0 0 1px 1px';
   const image = new Image();
-  image.src = 'src/assets/picture1.webp';
+  image.src = picture1URL;
   image.addEventListener('load',()=>{
     context.drawImage(image,0,0);
   })
@@ -76,7 +79,7 @@ nextTick(() => {
   canvasRef2._value.height = 300;
   canvasRef2._value.style.boxShadow = '0 0 1px 1px';
   const image2 = new Image();
-  image2.src = 'src/assets/picture1.webp';
+  image2.src = picture1URL;
   image2.addEventListener('load',()=>{
     context2.drawImage(image,0,0,500,300);
   })
@@ -86,7 +89,7 @@ nextTick(() => {
   canvasRef3._value.height = 400;
   canvasRef3._value.style.boxShadow = '0 0 1px 1px';
   const image3 = new Image();
-  image3.src = 'src/assets/picture1.webp';
+  image3.src = picture1URL;
   image3.addEventListener('load',()=>{
     context3.drawImage(image,800,0,image3.width - 800,600,0,0,400,400);
   })
@@ -101,7 +104,7 @@ nextTick(() => {
   canvasImg.width = 500;
   canvasImg.height = 300;
   const image4 = new Image();
-  image4.src = 'src/assets/picture1.webp';
+  image4.src = picture1URL;
   image4.addEventListener('load',()=>{
     contextImg.drawImage(image4,0,0,500,300);
     context4.drawImage(canvasImg,200,0,300,300,0,0,400,400)
@@ -115,7 +118,7 @@ canvas.height = 400;
 canvas.style.boxShadow = '0 0 1px 1px';
 const context = canvas.getContext("2d");
 const image = new Image();
-image.src = 'src/assets/picture1.webp';
+image.src = picture1URL;
 image.addEventListener('load',()=>{
   context.drawImage(image,0,0);
 })`,
@@ -125,7 +128,7 @@ canvas.height = 300;
 canvas.style.boxShadow = '0 0 1px 1px';
 const context = canvas.getContext("2d");
 const image = new Image();
-image.src = 'src/assets/picture1.webp';
+image.src = picture1URL;
 image.addEventListener('load',()=>{
   context.drawImage(image,0,0,500,300);
 })`,
@@ -135,7 +138,7 @@ canvas.height = 400;
 canvas.style.boxShadow = '0 0 1px 1px';
 const context = canvas.getContext("2d");
 const image = new Image();
-image.src = 'src/assets/picture1.webp';
+image.src = picture1URL;
 image.addEventListener('load',()=>{
   context.drawImage(image,800,0,image3.width - 800,600,0,0,400,400);
 })`,
@@ -150,7 +153,7 @@ const contextImg = canvasImg.getContext("2d");
 canvasImg.width = 500;
 canvasImg.height = 300;
 const image = new Image();
-image.src = 'src/assets/picture1.webp';
+image.src = picture1URL;
 image.addEventListener('load',()=>{
   contextImg.drawImage(image,0,0,500,300);
   context.drawImage(canvasImg,200,0,300,300,0,0,400,400)

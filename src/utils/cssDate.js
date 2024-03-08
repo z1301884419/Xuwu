@@ -1,7 +1,11 @@
+import imgSrc from '@/static/bizhi4.jpg'
+function getImageUrl(name) {
+  return new URL(`../static/${name}`, import.meta.url).href
+}
 export const cssData = [
   {
     id: "1001",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `calc()函数`,
     desc: 'css函数，可以动态计算值，计算符两边必须隔一个空格。示例：width:calc(100% - 20px)',
     code: `
@@ -19,7 +23,7 @@ export const cssData = [
     `
   }, {
     id: "1002",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `多行文本溢出隐藏: -webkit-line-clamp;`,
     desc: '文本溢出指定行数隐藏，使用时需配合使用display: -webkit-box; overflow: hidden;-webkit-box-orient: vertical;',
     code: `
@@ -63,7 +67,7 @@ export const cssData = [
     `
   }, {
     id: "1003",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `设置文本溢出显示样式: text-overflow`,
     desc: '设置文本溢出显示样式，如溢出省略...',
     code: `
@@ -83,16 +87,16 @@ export const cssData = [
   }
   , {
     id: "1004",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `设置图片的填充方式: object-fit: (fill|cover|contain|scale-down)`,
     desc: '设置图片的填充方式，需要为img设置宽和高。fill：压缩图片使其填满整个容器。cover：按容器大小取图片中间部分。contain，scale-down：保持原图比列。',
     code: `
     <html>
       <div class="box">
-        <img src="../src/assets/bgmohu.jpg">
+        <img src="${getImageUrl('bgmohu.jpg')}">
       </div>
       <div class="box">
-        <img src="../src/assets/bg1.jpg">
+        <img src="${getImageUrl('bg1.jpg')}">
       <div>
     </html>
     <style>
@@ -110,7 +114,7 @@ export const cssData = [
   }
   , {
     id: "1005",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `设置元素的阴影效果: box-shadow: h-shadow v-shadow blur spread color inset`,
     desc: `设置元素的阴影效果，h-shadow(px)：水平阴影的位置右正左负，
     v-shadow(px)：垂直阴影的位置下正上负，blur(px)：模糊距离(向外扩散的距离)，
@@ -132,7 +136,7 @@ export const cssData = [
   },
   {
     id: "1019",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `设置文字的阴影效果: text-shadow: h-shadow v-shadow blur spread color inset`,
     desc: `设置文字的阴影效果，h-shadow(px)：水平阴影的位置右正左负，v-shadow(px)：垂直阴影的位置下正上负，
     blur(px)：模糊距离(向外扩散的距离)，spread(px)：缩放阴影的大小，
@@ -155,7 +159,7 @@ export const cssData = [
     `
   }, {
     id: "1006",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `规定背景的绘制区域: background-clip`,
     desc: `background-clip：规定背景的绘制区域，一般使用可以有3个值：border-box,content-box,padding-box
             当使用-webkit-background-clip:时值可以是text，规定以文字为绘制区域，与-webkit-text-fill-color:transparent
@@ -178,7 +182,7 @@ export const cssData = [
         height:100px;
         font-size:60px;
         font-weight:bold;
-        background:url(../src/assets/sjbizhi4.jpg) no-repeat;
+        background:url( ${getImageUrl('sjbizhi4.jpg')}) no-repeat;
         background-size:100%;
         -webkit-background-clip:text;
         -webkit-text-fill-color:transparent;
@@ -188,7 +192,7 @@ export const cssData = [
   }
   , {
     id: "1007",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `实现倒影: -webkit-box-reflect: `,
     desc: '实现倒影效果',
     code: `
@@ -204,7 +208,7 @@ export const cssData = [
   }
   , {
     id: "1008",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `图文环绕样式: shape-outside:设置浮动元素周围内联元素对其包裹的形状`,
     desc: '可以用该属性实现图文环绕样式',
     code: `
@@ -234,7 +238,7 @@ export const cssData = [
     `
   }, {
     id: "1009",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `sass函数实现媒体查询`,
     desc: '利用函数和循环实现css循环',
     code: `
@@ -262,7 +266,7 @@ export const cssData = [
     `
   }, {
     id: "1010",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `拖动属性`,
     desc: '利用拖动属性实现课程安排',
     code: `
@@ -478,7 +482,7 @@ export const cssData = [
     `
   }, {
     id: "1011",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `Flip动画`,
     desc: `Flip动画：F:first,记录元素的起始位置、
                      L:last，记录元素的结束位置、
@@ -554,7 +558,7 @@ export const cssData = [
     `
   }, {
     id: "1012",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `拼音标注<ruby>字 <rp>(</rp> <rt>拼音</rt> <rp>)</rp></ruby>`,
     desc: '拼音标注样式标签：第三方字典库：pinyin.js',
     code: `
@@ -591,7 +595,7 @@ export const cssData = [
   },
   {
     id: "1013",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `加载样式`,
     desc: '',
     code: `
@@ -720,7 +724,7 @@ export const cssData = [
   },
   {
     id: "1014",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `手机充电效果`,
     desc: '手机充电效果动画',
     code: `
@@ -913,7 +917,7 @@ export const cssData = [
     `
   }, {
     id: "1015",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `断行样式处理：-webkit-box-decoration-break: clone`,
     desc: '断行样式处理：-webkit-box-decoration-break: clone | slice(默认) ',
     code: `
@@ -951,14 +955,14 @@ export const cssData = [
   },
   {
     id: "1016",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `css新属性vmin和vmax：设置元素的属性为窗口中宽和高中最小/大的值`,
     desc: 'vmin：取vw和vh较小的值；vmax：取vw和vh较大的值；（常在图片预览的情况下使用）',
     code: ``
   },
   {
     id: "1017",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `颜色混合属性：mix-blend-mode`,
     desc: `
       颜色混合属性：mix-blend-mode: normal | multiply | screeen | overlay | darken | lighten | color-dodge
@@ -1000,7 +1004,7 @@ export const cssData = [
   },
   {
     id: "1018",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `设置容器滚动条样式`,
     desc: '伪元素设置滚动条样式：::-webkit-scrollbar：设置滚动条容器样式、::-webkit-scrollbar-thumb：滚动条滑块样式、::-webkit-scrollbar-track：滚动条轨道样式',
     code: `
@@ -1048,7 +1052,7 @@ export const cssData = [
   },
   {
     id: "1020",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `流光登录页`,
     desc: '',
     code: `
@@ -1231,7 +1235,7 @@ export const cssData = [
   },
   {
     id: "1021",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `小球跳动Loading`,
     desc: '',
     code: `
@@ -1320,7 +1324,7 @@ export const cssData = [
   },
   {
     id: "1022",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `滑动拼图验证`,
     desc: '',
     code: `
@@ -1348,7 +1352,7 @@ export const cssData = [
         width: 300px;
         height: 250px;
         background-size: 100% 100%;
-        background-image: url(../src/assets/bizhi4.jpg);
+        background-image: url(${getImageUrl('bizhi4.jpg')});
       }
       .check-content{
         position: absolute;
@@ -1440,7 +1444,7 @@ export const cssData = [
   },
   {
     id: "1023",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: `鸿蒙开机动画`,
     desc: '',
     code: `
@@ -1609,7 +1613,7 @@ export const cssData = [
   },
   {
     id: "1024",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: 'css步骤条',
     desc: '',
     code: `
@@ -1683,7 +1687,7 @@ export const cssData = [
   },
   {
     id: "1025",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: '全景轮播效果',
     desc: '利用元素的内联样式和元素的唯一性实现轮播',
     code: `
@@ -1691,12 +1695,12 @@ export const cssData = [
       <section class="box">
         <div class="container">
           <div class="slide">
-            <div class="item" style="background-image: url('../src/assets/picture1.webp')"></div>
-            <div class="item" style="background-image: url('../src/assets/picture2.webp')"></div>
-            <div class="item" style="background-image: url('../src/assets/picture3.jpg')"></div>
-            <div class="item" style="background-image: url('../src/assets/picture4.jpg')"></div>
-            <div class="item" style="background-image: url('../src/assets/picture5.jpg')"></div>
-            <div class="item" style="background-image: url('../src/assets/picture6.jpg')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture1.webp')}')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture2.webp')}')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture3.jpg')}')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture4.jpg')}')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture5.jpg')}')"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture6.jpg')})"></div>
           </div>
           <div class="buttons">
             <div class="left">Prev</div>
@@ -1801,7 +1805,7 @@ export const cssData = [
   },
   {
     id: "1026",
-    src: '../src/assets/bizhi4.jpg',
+    src: imgSrc,
     text: '',
     desc: '',
     code: `

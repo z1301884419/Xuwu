@@ -7,6 +7,7 @@ export default defineConfig({
   server:{
     hmr: true,
   },
+  base: './',
   plugins: [vue()],
   resolve: {
     // 文件系统路径的别名
@@ -15,18 +16,5 @@ export default defineConfig({
       '@':path.resolve(__dirname,'./src'),
     },
   },
-  build:{
-    rollupOptions: {
-      // https://rollupjs.org/guide/en/#outputmanualchunks
-      output: {
-        manualChunks: {
-          'group-home': [
-            './src/pages/Home',
-          ],
-        },
-      },
-    },
-  },
-  
   
 })
