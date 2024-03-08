@@ -56,7 +56,7 @@ function itemClickHandle(list_id: any) {
   setLocal('read-count', readCount.value)
   // 跳转到详情页
   if (getLocal('detailsIsOpen') !== 'true') {
-    window.open(location.origin + '/#/details/' + list_id)
+    window.open(location.origin + location.pathname + '#/details/' + list_id)
   } else {
     channel.postMessage(list_id)
   }
