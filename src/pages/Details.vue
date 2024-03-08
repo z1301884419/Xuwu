@@ -69,7 +69,7 @@ import { operateObj, rmdBetweenNode, mergeHtml, mergeCalssName } from '@/utils/d
 const route = useRoute()
 
 function getImageUrl(name:string) {
-  return new URL(`../static/${name}`, import.meta.url).href
+  return `../static/${name}`
 }
 const imgArr = [getImageUrl('sjbizhi2.jpg'), getImageUrl('sjbizhi3.jpg'), getImageUrl('sjbizhi4.jpg'), getImageUrl('sjbizhi5.jpg')]
 console.log(imgArr)

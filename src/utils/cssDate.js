@@ -1,6 +1,6 @@
-import imgSrc from '@/static/bizhi4.jpg'
+import imgSrc from '/static/bizhi4.jpg'
 function getImageUrl(name) {
-  return new URL(`../static/${name}`, import.meta.url).href
+  return `../static/${name}`
 }
 export const cssData = [
   {
@@ -1700,7 +1700,7 @@ export const cssData = [
             <div class="item" style="background-image: url('${getImageUrl('picture3.jpg')}')"></div>
             <div class="item" style="background-image: url('${getImageUrl('picture4.jpg')}')"></div>
             <div class="item" style="background-image: url('${getImageUrl('picture5.jpg')}')"></div>
-            <div class="item" style="background-image: url('${getImageUrl('picture6.jpg')})"></div>
+            <div class="item" style="background-image: url('${getImageUrl('picture6.jpg')}')"></div>
           </div>
           <div class="buttons">
             <div class="left">Prev</div>

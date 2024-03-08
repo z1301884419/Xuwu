@@ -57,7 +57,7 @@
 import { nextTick, ref } from 'vue';
 import CodeArea from '@/components/CodeArea.vue'
 
-import picture1URL from '@/static/picture1.webp'
+import picture1URL from '/static/picture1.webp'
 
 const canvasRef1 = ref<Element>();
 const canvasRef2 = ref<Element>();

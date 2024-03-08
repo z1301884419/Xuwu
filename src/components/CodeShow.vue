@@ -92,7 +92,7 @@ function removeDoc() {
     // 清除定时器和计时器
     let timeCount = setTimeout(() => { });
     for (let i = 0; i < timeCount; i++) {
-      if (!timerStore.timerArr.includes(i)) {
+      if (timerStore.timerArr?.length && !timerStore.timerArr.includes(i)) {
         window.clearInterval(i);
         window.clearTimeout(i);
       }

@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { musicMenu } from '@/utils/menu.ts'
 import MusicFooter from '@/components/MusicFooter.vue'
-import avatarURL from '@/static/kedaya.jpeg'
+import avatarURL from '/static/kedaya.jpeg'
 import { ref } from 'vue';
 
 /** 导航栏数据 */

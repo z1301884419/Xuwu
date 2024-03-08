@@ -22,7 +22,7 @@
 // 选项式
 <script lang="ts">
 import { routes } from '@/routers.ts'
-import logoURL from '@/static/bizhi4.jpg'
+import logoURL from '/static/bizhi4.jpg'
 
 // header 
 const Header = {
