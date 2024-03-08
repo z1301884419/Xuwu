@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
+import { getSession, setSession } from "@/utils/util.js";
 
 //
 export const useMusicStore = defineStore("music", () => {
@@ -8,23 +9,20 @@ export const useMusicStore = defineStore("music", () => {
       name: "离别开出花",
       singer: "就是南方凯",
       avatar: "https://img2.kuwo.cn/star/albumcover/500/s3s47/0/3433413293.jpg",
-      video:
-        "https://m701.music.126.net/20240307231935/8dadd223fe239550cedb5008a8aae5f4/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/32103516877/3532/074b/bdea/4f512dfb86fec567b51062cc17695e22.m4a",
+      video: "/video/libiekaichuhua.mp3",
     },
     {
       name: "一丝不挂",
       singer: "陈奕迅",
       avatar:
         "https://p2.music.126.net/qE_9M-Ge5qwuk55IfkNO2g==/109951163200234557.jpg?param=200y200",
-      video:
-        "https://m801.music.126.net/20240307231539/c56087f32bf02cb593a7a673d7072934/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481781130/17d4/c256/d137/aaebb46b94a29568e76f6feafa6e1264.mp3",
+      video: "/video/yisibugua.mp3",
     },
     {
       name: "葡萄成熟时",
       singer: "陈奕迅",
       avatar: "https://img1.kuwo.cn/star/albumcover/500/83/42/4180851740.jpg",
-      video:
-        "https://m801.music.126.net/20240307192159/3b69e1134c5f7934c1b38a083635f2c9/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/32367558831/262f/a164/0261/b4856cc5242596f497f5a3c8420ac69f.m4a",
+      video: "/video/putaochengshushi.mp3",
     },
   ]);
   // 播放暂定标识
@@ -35,9 +33,11 @@ export const useMusicStore = defineStore("music", () => {
   const currentSong = computed(() => musicData.value[musicCount.value]);
   const song = new Audio(currentSong.value.video);
   // 当前音乐播放的进度
-  const progressObj = ref({
+  const songObj = ref({
     duration: 0,
     currentTime: 0,
+    currentVolume: 50,
+    volumeFlag: true,
   });
   //
   watch(currentSong, () => {
@@ -46,11 +46,16 @@ export const useMusicStore = defineStore("music", () => {
   });
   // 歌曲进度改变
   song.ontimeupdate = () => {
-    progressObj.value.currentTime = song.currentTime;
+    songObj.value.currentTime = song.currentTime;
   };
   // 歌曲加载完成
   song.onprogress = () => {
-    progressObj.value.duration = song.duration;
+    if (isNaN(song.duration)) {
+      songObj.value.duration = setSession("song-duration");
+    } else {
+      songObj.value.duration = song.duration;
+      setSession("song-duration", song.duration);
+    }
   };
   // 歌曲播放完成
   song.onended = () => {
@@ -58,6 +63,18 @@ export const useMusicStore = defineStore("music", () => {
       ? (musicCount.value = 0)
       : musicCount.value++;
   };
+
+  // 音量监听
+  watch(
+    () => songObj.value.currentVolume,
+    (val) => {
+      songObj.value.volumeFlag = val ? true : false;
+      song.volume = val / 100;
+    },
+    {
+      deep: true,
+    }
+  );
 
   /** 音乐播放控制 */
   function playSong() {
@@ -83,10 +100,26 @@ export const useMusicStore = defineStore("music", () => {
       progressChange(val: number) {
         song.pause();
         song.currentTime = val;
-        song.play();
+        this.play();
       },
+      volumeTrigger(flag: boolean) {
+        if (flag) {
+          song.volume = 0;
+          songObj.value.volumeFlag = false;
+        } else {
+          song.volume = songObj.value.currentVolume / 100;
+          if (!songObj.value.currentVolume) return;
+          songObj.value.volumeFlag = true;
+        }
+      },
+      download(){
+        let a = document.createElement('a');
+        a.href = song.src;
+        a.download =  currentSong.value.name + "-" + currentSong.value.singer;
+        a.click()
+      }
     };
   }
 
-  return { musicData, playSong, playflag, currentSong, progressObj };
+  return { musicData, playSong, playflag, currentSong, songObj };
 });

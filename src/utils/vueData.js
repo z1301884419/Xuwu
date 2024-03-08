@@ -1096,14 +1096,30 @@ function scrolltoAnchor() {
   },
   {
     id: '1031',
-    title: '',
-    desc: '',
+    title: 'vite+vue打包部署到githubpages服务器上时静态资源失效问题',
+    desc: '项目在本地环境中使用图片等静态资源ok，但打包结果部署到服务器后访问路径错误',
     readCount: 0,
     createTime: '20223-06-02 20:00:00',
     html: `
       <div id="vn-container">
-        <pre>
-        </pre>
+<pre><code>
+<h3>1.<span class="vn-color-blue">vite.config文件配置base路径为'./'</span></h3>
+export default defineConfig({
+  ...
+  <span class="vn-color-blue">base: './'</span>,
+  resolve: {
+    // 文件系统路径的别名
+        'vue': 'vue/dist/vue.esm-bundler.js',
+      },
+  },
+}
+<h3>2.<span class="vn-color-blue">将静态资源文件夹放到public文件夹中</span></h3>
+public下的文件被访问，不用加相对路径；public文件夹在项目打包时不会被编译。<br/>
+<h3>3.<span class="vn-color-blue">使用静态资源时，用import导入资源路径</span></h3>
+如： import imgURL from '/asset/xxx.png'
+< img :src="imgURL" /><br/>
+<h3>4.<span class="vn-color-blue">更多详情方法<a contenteditable="false" href="https://cn.vitejs.dev/guide/assets#explicit-url-imports" target="_blank">vite静态资源处理</a></span></h3>
+</code></pre>
       </div>`
   },
 ]
