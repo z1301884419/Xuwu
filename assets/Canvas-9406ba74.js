@@ -1,0 +1,1 @@
+import{d as e,c as a,q as n,x as o,o as t}from"./index-68e97df2.js";import{S as r}from"./SubRoutePage-b7e0888f.js";import{c as s}from"./menu-88f7499c.js";const d=e({__name:"Canvas",setup(c){return(m,u)=>(t(),a("div",null,[n(r,{"menu-data":o(s)},null,8,["menu-data"])]))}});export{d as default};
