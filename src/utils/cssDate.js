@@ -1,6 +1,6 @@
 import imgSrc from '/static/bizhi4.jpg'
 function getImageUrl(name) {
-  return `../static/${name}`
+  return location.origin + `/static/${name}`
 }
 export const cssData = [
   {
