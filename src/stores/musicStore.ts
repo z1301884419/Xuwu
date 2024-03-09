@@ -9,20 +9,20 @@ export const useMusicStore = defineStore("music", () => {
       name: "离别开出花",
       singer: "就是南方凯",
       avatar: "https://img2.kuwo.cn/star/albumcover/500/s3s47/0/3433413293.jpg",
-      video: "/video/libiekaichuhua.mp3",
+      video: "./video/libiekaichuhua.mp3",
     },
     {
       name: "一丝不挂",
       singer: "陈奕迅",
       avatar:
         "https://p2.music.126.net/qE_9M-Ge5qwuk55IfkNO2g==/109951163200234557.jpg?param=200y200",
-      video: "/video/yisibugua.mp3",
+      video: "./video/yisibugua.mp3",
     },
     {
       name: "葡萄成熟时",
       singer: "陈奕迅",
       avatar: "https://img1.kuwo.cn/star/albumcover/500/83/42/4180851740.jpg",
-      video: "/video/putaochengshushi.mp3",
+      video: "./video/putaochengshushi.mp3",
     },
   ]);
   // 播放暂定标识

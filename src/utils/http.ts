@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000/";
+// axios.defaults.baseURL = "http://localhost:3000/";
 // 请求拦截器
 axios.interceptors.request.use((config: AxiosRequestConfig | any) => config);
 // 响应拦截器

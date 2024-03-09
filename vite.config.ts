@@ -6,6 +6,18 @@ import path from 'path';
 export default defineConfig({
   server:{
     hmr: true,
+    proxy: {
+      '/msearchcdn': {
+        target: 'http://msearchcdn.kugou.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/msearchcdn/,''),
+      },
+      '/mobilecdnbj': {
+        target: 'http://mobilecdnbj.kugou.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/mobilecdnbj/,''),
+      }
+    }
   },
   base: './',
   plugins: [vue()],

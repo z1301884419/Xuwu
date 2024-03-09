@@ -60,7 +60,7 @@ function pathChange(path){
 
   .container-head {
     display: flex;
-    height: calc(var(--page-height) - 30px);
+    height: var(--page-height);
     .main-left {
       width: 220px;
       background-color: #f0f0f0;
@@ -109,6 +109,7 @@ function pathChange(path){
     .main-right {
       flex: 1;
       overflow-y: scroll;
+      padding: 0 20px 20px 20px;
     }
     .main-right::-webkit-scrollbar {
       height: 0;
@@ -120,9 +121,10 @@ function pathChange(path){
 }
 .footer{
   position: fixed;
-  bottom: 50px;
+  bottom: 0;
+  z-index: 999;
   width: 100vw;
-  height: 50px;
+  height: 60px;
   background: rgb(207, 222, 220);
   padding: 0 20px;
   border: #95c1ab solid 1px;

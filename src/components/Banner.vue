@@ -7,10 +7,10 @@
 </template>
 
 <script setup lang="ts">
-import { useBannerStore } from '@/stores/bannerStore'
-import { toRef } from 'vue';
-const bannerStore = useBannerStore()
-const imgsURL = toRef(bannerStore.bannerImgs)
+import { useMusicBannerStore } from '@/stores/musicBannerStore'
+
+const bannerStore = useMusicBannerStore()
+const imgsURL = bannerStore.swiperImgs
 </script>
 
 <style lang="sass" scoped>
