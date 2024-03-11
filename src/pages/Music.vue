@@ -122,11 +122,18 @@ function pathChange(path){
 .footer{
   position: fixed;
   bottom: 0;
+  left: 0;
   z-index: 999;
-  width: 100vw;
+  width: 100%;
   height: 60px;
   background: rgb(207, 222, 220);
   padding: 0 20px;
   border: #95c1ab solid 1px;
+}
+@media screen and (max-width: 600px) {
+  .footer{
+    transform: scale(0.5);
+    font-size: 12px;
+  }
 }
 </style>

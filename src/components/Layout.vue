@@ -11,11 +11,12 @@
         <Footer />
       </el-footer>
     </el-container>
+    <MusicAffix />
   </div>
 </template>
 
 <script setup lang="ts">
-
+import MusicAffix from '@/components/MusicAffix.vue'
 
 </script>
 
@@ -86,7 +87,7 @@ export default {
 <style lang="less" >
 .common-layout {
   height: 100%;
-  min-width: 400px;
+  min-width: 600px;
 }
 
 .el-container {
@@ -99,14 +100,18 @@ export default {
   width: 100%;
   height: 60px;
   top: 0;
-  min-width: 400px;
+  left: 0;
 }
 
 .header {
   display: flex;
 
   .logo {
-    width: 10%;
+    flex: 1;
+    img{
+      width: 100%;
+      object-fit: fill;
+    }
   }
 
   .nav {
@@ -132,13 +137,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 400px;
 }
 
 .el-main {
   margin-top: 60px;
   margin-bottom: 50px;
   padding: 0;
-  min-width: 400px;
+  min-width: 600px;
+  max-width: 1920px;
 }
 </style>

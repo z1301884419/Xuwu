@@ -38,7 +38,7 @@ const jsDoc = computed(() => {
     doc = value.slice(8, value.length - 9).replace(/[\}]\s/g, value => value.substr(0, 1) + ";")
       ?.replace(/(function |const |let |new |else |return |var |transform )/g, value => value + '-')
       ?.replace(/document[^\)]*\)/g, value => value.replace(' ', "^"))
-      ?.replace(/[\)|\}][\r|\n]/g, value => value + ';') // )}后加;
+      ?.replace(/[\)\}][\r\n]/g, value => value + ';') // )}后加;
       ?.replace(/\s/g, '')
       ?.replace(/document[^\)]*\)/g, value => value.replace('^', " "))
       ?.replace(/(function-|const-|let-|new-|else-|return-|var-|transform-)/g, value => value.slice(0, value.length - 1) + ' ')
@@ -76,10 +76,10 @@ function addDoc() {
   }
   // 向html文档中添加js部分
   if (jsDoc.value) {
-    const jsNode = document.createElement('script')
-    jsNode.innerText = `var jscode = undefined;jscode = function(){${jsDoc.value}};jscode()`
-    jsNode.setAttribute("id", 'jsdoc')
-    document.getElementsByTagName('html')[0].appendChild(jsNode)
+    const jsNode = document.createElement('script');
+    jsNode.innerText = `var jscode = undefined;jscode = function(){${jsDoc.value}};jscode()`;
+    jsNode.setAttribute("id", 'jsdoc');
+    document.getElementsByTagName('html')[0].appendChild(jsNode);
   }
 }
 // 删除上一个css,js

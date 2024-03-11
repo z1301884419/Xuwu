@@ -1,41 +1,60 @@
-import http from './http';
+import http from "./http";
 
 // 搜索
-export async function useSearch(keyword: string = "稻香"){
-  const res = await http.get('/msearchcdn/api/v3/search/song',{
-    "showtype":14,
-    "highlight": "em",
-    "pagesize":15,
-    "tag_aggr":1,
-    "tagtype":"全部",
-    "plat":0,
-    "sver":5,
-    "keyword": keyword,
-    "correct":1,
-    "api_ver":1,
-    "version":9108,
-    "page":1,
-    "area_code":1,
-    "tag":1,
-    "with_res_tag":1
-  })
-  return res.replace(/<!--.{10,20}-->/gim,'');
+export async function useSearch(keyword: string = "稻香") {
+  const res: any = await http.get("/msearchcdn/api/v3/search/song", {
+    highlight: "mark",
+    pagesize: 15,
+    tagtype: "全部",
+    keyword: keyword,
+    page: 1,
+  });
+  return res.data;
 }
 
 // 热门推荐
 export async function useHotRecommend() {
-  const res = await http.get('/mobilecdnbj/api/v3/tag/recommend?showtype=3&apiver=2&plat=0')
-  return res
+  const res:any = await http.get(
+    "/mobilecdnbj/api/v3/tag/recommend?showtype=3&apiver=2"
+  );
+  return res.data;
 }
 
 // 推荐歌单
 export async function useRecommendOrder() {
-  return await http.get('/mobilecdnbj/api/v3/tag/specialList?plat=0&page=1&tagid=12&pagesize=30&ugc=1&id=68&sort=2')
+  const res:any = await http.get("/mobilecdnbj/api/v3/tag/specialList", {
+    page: 1,
+    tagid: 12,
+    pagesize: 30,
+    ugc: 1,
+    id: 68,
+    sort: 2,
+  });
+  return res.data;
 }
 
 // 热门歌单
 export async function useHotOrder() {
-  const res = await http.get('/mobilecdnbj/api/v3/rank/list?version=9108&plat=0&showtype=2&parentid=0&apiver=6&area_code=1&withsong=1&with_res_tag=1')
-  return JSON.parse(res.replace(/<!--.{1,30}-->/gim,''));
+  const res: any = await http.get("/mobilecdnbj/api/v3/rank/list", {
+    parentid: 0,
+    withsong: 1,
+  });
+  return res.data;
 }
 
+// 新歌推荐
+export async function useNewSong(type: any = 'china') {
+  // china：华语新歌, western：欧美新歌， JapanAndKorea:日韩新歌
+  enum typeEnum {
+    china = 1,
+    western,
+    j_and_k,
+  }
+  const res: any = await http.get("/mobilecdnbj/api/v3/rank/newsong", {
+    with_cover: 1,
+    pagesize: 10,
+    page: 1,
+    type: typeEnum[type],
+  });
+  return res.data;
+}
