@@ -51,7 +51,7 @@ export const useMusicStore = defineStore("music", () => {
   // 歌曲加载完成
   song.onprogress = () => {
     if (isNaN(song.duration)) {
-      songObj.value.duration = setSession("song-duration");
+      songObj.value.duration = getSession("song-duration");
     } else {
       songObj.value.duration = song.duration;
       setSession("song-duration", song.duration);

@@ -8,7 +8,7 @@
       <div class="card-list-row">
         <template v-for="item of bannerStore.hotRecommedData">
           <div v-if="item.bannerurl" class="card-item" :key="item.id">
-            <img :src="item.bannerurl" alt="">
+            <img :data-src="item.bannerurl" alt="">
             <div>{{ item.name }}</div>
           </div>
         </template>
@@ -20,7 +20,7 @@
       <div class="card-list-row">
         <template v-for="item of bannerStore.recommendOrderData.slice(0, 5)">
           <div v-if="item.imgurl" class="card-item" :key="item.id">
-            <img :src="item.imgurl.replace('/{size}', '')" alt="">
+            <img class="lazy-img" :data-src="item.imgurl.replace('/{size}', '')" alt="">
             <div>{{ item.specialname }}</div>
           </div>
         </template>
@@ -34,7 +34,7 @@
         <div class="card-list-vertical">
           <template v-for="item of bannerStore.hotOrderData.slice(0, 3)">
             <div v-if="item.banner_9" class="card-item" :key="item.id">
-              <img :src="item.banner_9.replace('/{size}', '')" alt="">
+              <img class="lazy-img" :data-src="item.banner_9.replace('/{size}', '')" alt="">
               <ol>
                 <li v-for="(song, index) of item.songinfo" :key="song.id">
                   <span>{{ index + 1 }}.</span>
@@ -47,11 +47,11 @@
       </section>
       <!-- 新歌推荐 -->
       <section class="new-song">
-        <h3>新歌推荐</h3>
+        <h3 @click="click">新歌推荐</h3>
         <div class="card-list-row">
           <template v-for="item of bannerStore.newSongData.chinaSong.slice(0, 10)">
             <div v-if="item.cover" class="card-item" :key="item.id">
-              <img :src="item.cover.replace('/{size}', '')" alt="">
+              <img class="lazy-img" :data-src="item.cover.replace('/{size}', '')" alt="">
               <div class="songinfo">
                 <div class="songname">{{ item.filename.split(' - ')[1] }}</div>
                 <div class="autor">{{ item.filename.split(' - ')[0] }}</div>
@@ -66,18 +66,35 @@
 
 <script setup lang="ts">
 import Banner from '@/components/Banner.vue';
-import { useSearch } from '@/utils/musicApi';
 import { useMusicBannerStore } from '@/stores/musicBannerStore';
-import { nextTick } from 'vue';
-
-useSearch().then(res => {
-  // console.log(JSON.parse(res))
-})
+import { nextTick, ref, watch } from 'vue';
 
 const bannerStore = useMusicBannerStore()
 
+// 图片懒加载处理(配合watch和nextTick使用)
+// 使用局限性(首屏图片元素的监听始终快于接口，此时data-src为空)
+function imgLazyLoad() {
+  const imgOb = new IntersectionObserver((entries) => {
+    for (let entry of entries) {
+      if (entry.isIntersecting) {
+        let img: any = entry.target;
+        if (img.dataset.src) {
+          entry.target.src = img.dataset.src;
+        }
+        imgOb.unobserve(img)
+      }
+    }
+  })
+  const imgs = document.querySelectorAll('.lazy-img')
+  imgs.forEach((img) => {
+    imgOb.observe(img)
+  })
+}
+watch(bannerStore, () => {
+  imgLazyLoad()
+})
 nextTick(() => {
-
+  imgLazyLoad()
 })
 </script>
 
@@ -211,7 +228,8 @@ nextTick(() => {
         img {
           width: 30%;
         }
-        .songinfo{
+
+        .songinfo {
           flex: 1;
         }
 
@@ -221,10 +239,12 @@ nextTick(() => {
           text-overflow: ellipsis;
         }
       }
-      .card-item:nth-of-type(1){
+
+      .card-item:nth-of-type(1) {
         margin: 0;
       }
-      .card-item:nth-of-type(2){
+
+      .card-item:nth-of-type(2) {
         margin: 0;
       }
 
@@ -233,6 +253,7 @@ nextTick(() => {
         .flex-column;
         justify-content: space-around;
         padding: 5px;
+
         .autor {
           font-size: 12px;
           font-weight: 200;

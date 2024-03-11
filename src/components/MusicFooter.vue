@@ -6,26 +6,25 @@
         <div class="song-name" ref="songnameRef">
           <span>{{ currentSong.name }}</span> - <span>{{ currentSong.singer }}</span>
         </div>
-        <el-slider v-if="showProgress" class="song-progress" v-model="songObj.currentTime" @input="progressInput"
-          @change="progressChange" :min="0" :max="songObj.duration" />
+        <el-slider v-if="showProgress" class="song-progress" v-model="songObj.currentTime" 
+          @mousedown="(e)=>{e.stopPropagation()}"
+          @input="progressInput"
+          @change="progressChange" :min="0" :max="songObj.duration || getSession('song-duration')" />
       </div>
     </div>
     <div class="song-controller">
       <GoStart @click="playChange('pre')" :theme="theme" :size="size" :fill="fill" />
-      <Play v-if="!playflag" @click="palyHandle" :theme="theme" :size="size"
-        :fill="fill" />
-      <PauseOne v-if="playflag" @click="palyHandle" :theme="theme" :size="size"
-        :fill="fill" />
+      <Play v-if="!playflag" @click="palyHandle" :theme="theme" :size="size" :fill="fill" />
+      <PauseOne v-if="playflag" @click="palyHandle" :theme="theme" :size="size" :fill="fill" />
       <GoEnd @click="playChange('next')" :theme="theme" :size="size" :fill="fill" />
     </div>
     <div class="song-options">
-      <VolumeNotice v-if="songObj.volumeFlag" @click="volumeTrigger(true)" :theme="theme"
-        :size="size / 1.5" :fill="fill" />
-      <VolumeMute v-if="!songObj.volumeFlag" @click="volumeTrigger(false)" :theme="theme"
-        :size="size / 1.5" :fill="fill" />
-      <el-slider class="song-volume" v-model="songObj.currentVolume" :min="0" :max="100" />
-      <Download v-if="showDownload" @click="download" :theme="theme" :size="size / 1.5"
+      <VolumeNotice v-if="songObj.volumeFlag" @click="volumeTrigger(true)" :theme="theme" :size="size / 1.5"
         :fill="fill" />
+      <VolumeMute v-if="!songObj.volumeFlag" @click="volumeTrigger(false)" :theme="theme" :size="size / 1.5"
+        :fill="fill" />
+      <el-slider class="song-volume" v-model="songObj.currentVolume" @mousedown="(e)=>{e.stopPropagation()}" :min="0" :max="100" />
+      <Download v-if="showDownload" @click="download" :theme="theme" :size="size / 1.5" :fill="fill" />
     </div>
 
   </footer>
@@ -34,9 +33,10 @@
 <script setup lang="ts">
 
 import { Play, PauseOne, GoStart, GoEnd, VolumeMute, VolumeNotice, Download } from '@icon-park/vue-next';
-import { defineProps, nextTick, ref } from 'vue'
+import { defineProps, nextTick, ref, watch } from 'vue'
 import { useMusicStore } from '@/stores/musicStore';
 import { storeToRefs } from 'pinia';
+import { getSession } from "@/utils/util.js";
 
 interface IController {
   theme?: any;
@@ -54,16 +54,16 @@ interface IProps {
 }
 
 const defaultControlOption = {
-    theme: 'filled',
-    size:'36',
-    fill: '#7cd1be',
-  }
+  theme: 'filled',
+  size: '36',
+  fill: '#7cd1be',
+}
 const defaultShowComp = {
-    showImg: true,
-    showProgress: true,
-    showDownload: true,
-  }
-const { songData, controlOption, showComp } = withDefaults(defineProps<IProps>(),{})
+  showImg: true,
+  showProgress: true,
+  showDownload: true,
+}
+const { controlOption, showComp } = withDefaults(defineProps<IProps>(), {})
 const { theme, size, fill } = {
   ...defaultControlOption,
   ...controlOption,
@@ -93,7 +93,7 @@ function playChange(type: string) {
 }
 /** 进度控制 */
 const currentTime = ref(0);
-function progressChange() {
+function progressChange(e) {
   playControl.progressChange(currentTime.value)
 }
 // vue el-slider 组件bug？change事件松开的值并不是滑到的值，要结合input事件使用
@@ -108,17 +108,28 @@ function volumeTrigger(flag: boolean) {
 function download() {
   playControl.download();
 }
-nextTick(() => {
+
+watch(currentSong, () => {
+  setTimeout(needSrcoll)
+})
+
+nextTick(needSrcoll)
+
+function needSrcoll() {
+  
   let songnameRef_w = parseInt(getComputedStyle(songnameRef.value).width)
   let songnameBoxRef_w = parseInt(getComputedStyle(songnameBoxRef.value).width)
+  console.log(songnameRef_w, songnameBoxRef_w)
   if (songnameRef_w > songnameBoxRef_w) {
     // 不能这么写，运行时找不到动画名，scope里定义的属性在运行时会额外生成一个hash值
     // songnameRef.value.style.animation = "text_scroll 5s linear infinite" 
     // 改用添加类名方法
     songnameRef.value.style.setProperty("--sroll-width", songnameBoxRef_w - songnameRef_w + 'px');
     songnameRef.value.classList.add('anmation');
+  } else {
+    songnameRef.value.classList.remove('anmation');
   }
-})
+}
 
 </script>
 
@@ -156,19 +167,26 @@ footer {
     }
 
     >div {
-      padding: 5px 10px;
       flex: 1;
+      padding: 5px 2px;
       width: 100%;
       white-space: nowrap;
-      overflow: scroll;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
 
       .song-name {
         --sroll-width: 0px;
         width: max-content;
+        padding:  0 8px;
       }
 
       .song-progress {
         width: 100%;
+        padding: 0 8px;
+        overflow: hidden;
       }
     }
   }

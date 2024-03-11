@@ -92,7 +92,6 @@ function mousedown(e) {
 
   .music-footer {
     flex: 1;
-    // background: red;
     margin-right: 50px;
 
   }

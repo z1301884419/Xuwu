@@ -49,3 +49,4 @@ String.prototype.codePointLength = function () {
 };
 // 每次打开时设置
 setLocal('detailsIsOpen', 'false');
+
