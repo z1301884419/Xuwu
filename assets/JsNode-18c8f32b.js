@@ -1,0 +1,1 @@
+import{d as e,c as o,q as a,x as t,o as s}from"./index-a2eccc6b.js";import{S as n}from"./SubRoutePage-deaa5e52.js";import{j as r}from"./menu-807894c4.js";const c={class:"box"},i=e({__name:"JsNode",setup(m){return(u,d)=>(s(),o("div",c,[a(n,{"menu-data":t(r)},null,8,["menu-data"])]))}});export{i as default};

@@ -1,0 +1,19 @@
+import{d as C,r as i,n as y,c as h,k as u,l as x,a as t,v as b,Y as S,Z as w,G as k,H as R,X as A,p as O,b as D,o as c,m as r,_ as T}from"./index-a2eccc6b.js";import{C as f}from"./CodeArea-3f31aad3.js";const n=l=>(O("data-v-05832218"),l=l(),D(),l),V=n(()=>t("h2",{id:"canvas_compose-title"}," 合成(图层控制) ",-1)),B=n(()=>t("div",null,"2D上下文中由两个属性可以改变图层的显示效果：",-1)),I=n(()=>t("div",null,"globalAlpha:透明度",-1)),N=n(()=>t("div",null,"globalCompositeOperation:合成",-1)),q=n(()=>t("br",null,null,-1)),E=n(()=>t("h4",{id:"canvas_compose-alpha"},"globalAlpha:透明度（在绘制前设置生效）",-1)),F=n(()=>t("div",null,"context.globalAlpha = 0~1",-1)),G=["textContent"],H=n(()=>t("div",null,"效果如下",-1)),L=A('<br data-v-05832218><br data-v-05832218><h4 id="canvas_compose-compose" data-v-05832218> globalCompositeOperation:合成（在绘制新图像前设置生效） </h4><div data-v-05832218>globalCompositeOperation设置新(源)图像与旧(目标)图像的合成显示效果，其值可以是：</div><br data-v-05832218><div data-v-05832218>copy：只保留新图像</div><div data-v-05832218>destination-atop：重叠部分显示旧图像，其余显示新图像</div><div data-v-05832218>destination-in：只显示重叠部分的旧图像</div><div data-v-05832218>destination-out：只显示旧图像未重叠部分</div><div data-v-05832218>destination-over：新旧图像都显示，旧图像在上层</div><div data-v-05832218>source-atop：重叠部分显示新图像，其余显示旧图像</div><div data-v-05832218>source-in：只显示重叠部分的新图像</div><div data-v-05832218>source-out：只显示新图像未重叠部分</div><div data-v-05832218>source-over：新旧图像都显示，新图像在上层(默认值)</div><div data-v-05832218>xor：只显示新旧图像未重叠部分</div><div data-v-05832218>lighter：新旧图像都显示，重叠部分的颜色值做加处理：如#554433与#334455得到#888888</div><div data-v-05832218>lighten：新旧图像都显示，重叠部分的颜色值取小值：如#554433与#334455得到#334433</div><div data-v-05832218>darken：新旧图像都显示，重叠部分的颜色值取大值：如#554433与#334455得到#554455</div>',18),M=["textContent"],U=["value"],X=n(()=>t("br",null,null,-1)),Y=n(()=>t("br",null,null,-1)),Z=C({__name:"CanvasCompose",setup(l){const p=i(),d=i(),v=i("source-over"),g=["copy","destination-atop","destination-in","destination-out","destination-over","source-atop","source-in","source-out","source-over","xor","lighter","lighten","darken"];function m(){const o=d._value;o.width=400,o.height=200,o.style.boxShadow="0 0 1px 1px";const e=o.getContext("2d");e.fillStyle="#554433",e.fillRect(20,20,100,100),e.globalCompositeOperation=v._value,e.fillStyle="#334455",e.fillRect(70,70,100,100)}y(()=>{const o=p._value;o.width=400,o.height=150,o.style.boxShadow="0 0 1px 1px";const e=o.getContext("2d");e.fillStyle="#009900",e.globalAlpha=.5,e.fillRect(10,10,100,100);const a=d._value;a.width=400,a.height=200,a.style.boxShadow="0 0 1px 1px";const s=a.getContext("2d");s.fillStyle="#554433",s.fillRect(20,20,100,100),s.fillStyle="#334455",s.fillRect(70,70,100,100)});const _=i({html1:`const canvas = document.querySelector("canvas");
+canvas.width = 400;
+canvas.height = 150;
+canvas.style.boxShadow = '0 0 1px 1px';
+const context = canvas.getContext("2d");
+context.fillStyle = "#009900";
+context.globalAlpha = 0.5; // 在绘制前设置生效
+context.fillRect(10, 10, 100, 100);
+`,html2:`const canvas = document.querySelector("canvas");
+canvas.width = 400;
+canvas.height = 200;
+canvas.style.boxShadow = '0 0 1px 1px';
+const context = canvas.getContext("2d");
+context.fillStyle = "#554433";
+context.fillRect(20, 20, 100, 100);
+context.globalCompositeOperation = "选的值";
+context.fillStyle = "#334455";
+context.fillRect(70, 70, 100, 100);
+`});return(o,e)=>(c(),h("div",null,[V,B,I,N,q,E,F,(c(),u(f,{key:new Date().getTime()+"html1"},{default:x(()=>[t("div",{textContent:r(_.value.html1)},null,8,G)]),_:1})),H,t("canvas",{ref_key:"canvasRef1",ref:p},null,512),L,(c(),u(f,{key:new Date().getTime()+"html2"},{default:x(()=>[t("div",{textContent:r(_.value.html2)},null,8,M)]),_:1})),b(" 选值查看效果： "),S(t("select",{"onUpdate:modelValue":e[0]||(e[0]=a=>v.value=a),onChange:m},[(c(),h(k,null,R(g,a=>t("option",{key:a,value:a},r(a),9,U)),64))],544),[[w,v.value]]),X,Y,t("canvas",{ref_key:"canvasRef2",ref:d},null,512)]))}});const J=T(Z,[["__scopeId","data-v-05832218"]]);export{J as default};
