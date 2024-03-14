@@ -43,10 +43,10 @@ import { Search } from '@element-plus/icons-vue'
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: 100%;
+    width: calc(100% - 20px);
     top: 60px;
     left: 0;
-    z-index: 9999;
+    z-index: 99;
     .serch-input{
       margin: 15px;
       width: 50%;

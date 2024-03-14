@@ -1,10 +1,10 @@
 <template>
-  <div ref="containerRef" class="container">
-    <div class="page_top">
+  <div class="container">
+    <div class="page_top" ref="topRef">
       <h1>{{ detailsData?.title }}</h1>
       <div class="desc">{{ detailsData?.desc }}</div>
     </div>
-    <div class="vue-node">
+    <div class="vue-node" ref="contentRef">
       <div class="carousel-img">
         <span>这是几张图片</span>
         <el-carousel indicator-position="none">
@@ -13,17 +13,16 @@
           </el-carousel-item>
         </el-carousel>
       </div>
-      <div ref="editIcon" class="edit-show" v-if="detailsData?.html">
+      <div v-if="detailsData?.html" class="node-show">
+        <div class="node-text" :contenteditable="editVisible" v-html="detailsData?.html"
+          @mouseup="htmlMouseup"></div>
+      </div>
+      <div class="edit-show" v-if="detailsData?.html && !editVisible">
         <el-icon @click="editShow">
           <Edit />
         </el-icon>
       </div>
-      <div v-if="detailsData?.html" class="node-show">
-        <div class="node-text" ref="vueNodeRef" :contenteditable="editVisible" v-html="detailsData?.html"
-          @mouseup="htmlMouseup"></div>
-      </div>
-      <div ref="operatePlaceRef" class="node-operate_place"></div>
-      <div ref="operateRef" v-if="editVisible && detailsData?.html" class="node-operate">
+      <div v-if="editVisible && detailsData?.html" class="node-operate">
         <div class="operate-color">
           字体颜色:
           <span class="tag-area">
@@ -59,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, watchEffect, computed, nextTick } from 'vue'
+import { ref, onMounted, watchEffect, computed, nextTick, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router';
 import { Edit } from '@element-plus/icons-vue'
 import vueData from '@/utils/vueData.js';
@@ -68,11 +67,10 @@ import { operateObj, rmdBetweenNode, mergeHtml, mergeCalssName } from '@/utils/d
 
 const route = useRoute()
 
-function getImageUrl(name:string) {
+function getImageUrl(name: string) {
   return location.origin + location.pathname + `/static/${name}`
 }
 const imgArr = [getImageUrl('sjbizhi2.jpg'), getImageUrl('sjbizhi3.jpg'), getImageUrl('sjbizhi4.jpg'), getImageUrl('sjbizhi5.jpg')]
-console.log(imgArr)
 const dataId = ref<any>(undefined);
 // 建立的标签页通信
 const channel = new BroadcastChannel('details');
@@ -85,19 +83,6 @@ channel.onmessage = (e) => {
 const detailsData = computed(() => {
   return vueData.filter((i: any) => i.id == dataId.value)[0] || {}
 })
-
-/** editIcon */
-const containerRef = ref()
-/** editIcon */
-const editIcon = ref()
-/** operate_placeRef */
-const operatePlaceRef = ref()
-/** operateRef */
-const operateRef = ref()
-
-// vue-node 部分
-/** vueNodeRef */
-const vueNodeRef = ref()
 
 const selectObj = ref<{
   startNode: Element | null | undefined,
@@ -134,8 +119,8 @@ function htmlMouseup() {
   selectObj.value.endTextNode = select?.extentNode
   selectObj.value.startOff = select?.anchorOffset
   selectObj.value.endOff = select?.extentOffset
-  console.log('startTextNode.nodeValue', select?.anchorNode.nodeValue)
-  console.log('endTextNode.nodeValue', select?.extentNode.nodeValue)
+  // console.log('startTextNode.nodeValue', select?.anchorNode.nodeValue)
+  // console.log('endTextNode.nodeValue', select?.extentNode.nodeValue)
 }
 
 /** 拿到用户选取的内容后，对其操作
@@ -280,28 +265,15 @@ function selectEdit(className: string) {
   }
 }
 
-let containerRefWidth: number;
-let operateWidth: number;
-let operateRight: number;
-function resize() {
-  // console.log('resize')
-  if (editVisible.value) {
-    if (!operateRef._value) return
-    containerRefWidth = parseInt(window.getComputedStyle(containerRef._value).width, 10);
-    operateWidth = parseInt(window.getComputedStyle(operateRef._value).width, 10);
-    operateRight = parseInt(window.getComputedStyle(operateRef._value).right, 10);
-    operatePlaceRef._value.style.width = (operateWidth + operateRight) * 0.88 + 'px';
-    editIcon._value.style.right = parseInt(operatePlaceRef._value.style.width, 10) + containerRefWidth * 0.03 + 45 + 'px';
-  } else {
-    operatePlaceRef._value.style.width = 0;
-    editIcon._value.style.right = containerRefWidth * 0.03 + 40 + 'px';
-  }
+// 顶部标题容器
+const topRef = ref();
+// 内容容器
+const contentRef = ref();
+function setContentStyle() {
+  let h = parseInt(getComputedStyle(topRef.value).height, 10)
+  contentRef.value.style.marginTop = h + 'px';
+  contentRef.value.style.height = `calc(100vh - ${h + 110}px)`;
 }
-
-watchEffect(() => {
-  editVisible.value;
-  resize()
-}, { flush: 'post' })
 
 onMounted(() => {
   setLocal('detailsIsOpen', 'true');
@@ -310,9 +282,12 @@ onMounted(() => {
   }
 })
 nextTick(() => {
-  debounce(resize)()
+  setContentStyle();
 })
-window.onresize = debounce(resize);
+onUnmounted(() => {
+  setLocal('detailsIsOpen', 'false');
+  channel.close();
+})
 window.onbeforeunload = () => {
   setLocal('detailsIsOpen', 'false');
   channel.close();
@@ -328,17 +303,12 @@ window.onbeforeunload = () => {
   .carousel-img {
     display: none;
   }
-
-  .node-show {
-    margin-left: 0px !important;
-  }
 }
 
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 680px) {
 
   .edit-show,
-  .node-operate,
-  .node-operate_place {
+  .node-operate {
     display: none;
   }
 }
@@ -347,20 +317,18 @@ window.onbeforeunload = () => {
 
 .container {
   margin: 0 @margin_width;
-  margin-top: 100px;
+  // height: var(--page-height);
 }
 
 .page_top {
+  box-sizing: border-box; // 其heigth等于内容+padding+margin+border
   position: fixed;
-  width: 94%;
+  width: 100%;
   left: 0;
   top: 60px;
-  margin: 0 3%;
-  white-space: nowrap;
-  overflow: hidden;
-  // padding: 0 3%;
+  padding: 0 @margin_width;
   z-index: 9;
-  background-color: #fff;
+  // background-color: #fff;
   padding-bottom: 10px;
   border-bottom: 1px gray dashed;
 }
@@ -369,8 +337,11 @@ window.onbeforeunload = () => {
   display: flex;
   justify-content: space-between;
   position: relative;
-  margin-top: 16px;
+  box-sizing: border-box;
+  // margin: 16px; // margin由js计算
   padding-top: 16px;
+  // height: 300px; // height由js计算
+  overflow: hidden;
 
   .carousel-img {
     // border: 1px solid black;
@@ -378,25 +349,14 @@ window.onbeforeunload = () => {
     text-align: center;
     font-size: 14px;
     margin-top: 50px;
-    position: fixed;
-    left: 3%;
-  }
-
-  .edit-show {
-    position: fixed;
-    // right: 100px;
-    z-index: 1;
-    background-color: aliceblue;
-    color: rgb(24, 140, 241);
   }
 
   .node-show {
-    box-sizing: content-box;
     box-shadow: 0px 0px 1px;
     flex: 3;
+    overflow-y: scroll;
     padding: 0 10px;
-    margin-left: 150px;
-    margin-bottom: 10px;
+    margin: 0 10px;
     min-height: 400px;
 
     .node-text {
@@ -412,8 +372,12 @@ window.onbeforeunload = () => {
     }
   }
 
-  .node-operate_place {
-    // background: red;
+  .edit-show {
+    position: absolute;
+    right: 30px;
+    z-index: 1;
+    background-color: aliceblue;
+    color: rgb(24, 140, 241);
   }
 
   .node-operate::after {
@@ -423,13 +387,10 @@ window.onbeforeunload = () => {
   }
 
   .node-operate {
+    border: 1px solid gray;
     box-shadow: 0px 0px 2px;
-    // margin-left: 50px;
     padding: 8px;
-    position: fixed;
-    right: calc(@margin_width + 40px);
 
-    // top:0;
     >div {
       font-size: 12px;
       margin: 14px 0;

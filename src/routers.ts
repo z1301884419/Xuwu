@@ -161,6 +161,10 @@ const routes: Array<RouteRecordRaw> = [
         component: jsnodehtml.AjaxAbout,
       },
       {
+        path: "audio_video_about",
+        component: jsnodehtml.AudioVideoAbout,
+      },
+      {
         path: "/jsnode/:pathMatch(.*)*",
         redirect: "/jsnode/introduce",
       },

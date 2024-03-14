@@ -119,7 +119,7 @@ function needSrcoll() {
   
   let songnameRef_w = parseInt(getComputedStyle(songnameRef.value).width)
   let songnameBoxRef_w = parseInt(getComputedStyle(songnameBoxRef.value).width)
-  console.log(songnameRef_w, songnameBoxRef_w)
+  // console.log(songnameRef_w, songnameBoxRef_w)
   if (songnameRef_w > songnameBoxRef_w) {
     // 不能这么写，运行时找不到动画名，scope里定义的属性在运行时会额外生成一个hash值
     // songnameRef.value.style.animation = "text_scroll 5s linear infinite" 

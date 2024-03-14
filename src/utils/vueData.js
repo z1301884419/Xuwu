@@ -7,7 +7,7 @@ export default [
     createTime: '20223-06-02 20:00:00',
     html: `
 <div id="vn-container">
-<code>< script setup>中，默认为expose()，不暴露任何东西；
+<code>&lt;script setup&gt;中，默认为expose()，不暴露任何东西；
 
 setup函数中expose的使用方法：
 1.使用回调函数
@@ -61,7 +61,7 @@ setup函数中expose的使用方法：
 <- - - - >
 <li>nexttick() // 组件完全加载之后</li>
 <li>onErrorCaptured() // 在捕获了后代组件传递的错误时调用</li>
-<li>onBeforeRouteUpdate() // 路由更新之前，如果在组件 < router-view>< /router-view>中</li>
+<li>onBeforeRouteUpdate() // 路由更新之前，如果在组件 &lt;router-view>&lt;/router-view>中</li>
 
 父子组件挂载时调用顺序：
 <- - - ->
@@ -81,7 +81,7 @@ setup函数中expose的使用方法：
 <li>子onUpdated()</li>
 <li>父onUpdated()</li>
 父子组件卸载时的调用顺序：
-< - - - ->
+&lt;- - - ->
 <li>父beforeUnmount()</li>
 <li>子beforeUnmount()</li>
 <li>子onUnmounted()</li>
@@ -93,7 +93,7 @@ setup函数中expose的使用方法：
 </code></div>`,
   }, {
     id: '1003',
-    title: '自定义组件想实现v-model的效果可以使用provide(),inject()，可以实现上下级组件的数据共享',
+    title: '自定义组件想可以使用provide(),inject()，可以实现上下级组件的数据共享',
     desc: '上级组件使用provide("count",count),下级组件使用const count = inject("count"),新版可以使用defineModel获取到组件传的v-model的值了',
     readCount: 0,
     createTime: '20223-06-02 20:00:00',
@@ -151,7 +151,7 @@ function inputCompositionEnd(val){
 function search(searchQuery){
   console.log(searchQuery);
 }
-<span class='vn-color-blue'>compositionstart:</span>合成开始时，禁止input触发search事件</br>
+<span class='vn-color-blue'>compositionstart:</span>合成开始时，禁止input触发search事件<br/>
 <span class='vn-color-blue'>compositionend:</span>合成结束时，触发search并允许input触发search事件
 </code>`,
   },
@@ -249,7 +249,7 @@ channel.onmessage = (e)=>{
 <span class="vn-color-blue">3.使文件目录结构可读</span>
 <span class="vn-color-blue">4.读取每个文件的内容</span>
 <-->
-< button>选择文件夹< /button>
+&lt;button>选择文件夹&lt;/button>
 <-->
 const btn = document.querySelector('button');
 btn.onclick = async function(){
@@ -344,7 +344,7 @@ function paralleTask(tasks: Array<Function>, parallelCount: number = 2) {
       nextIndex++;
       task().then(()=>{
         finishCount++;
-        if(nextIndex < tasks.length){
+        if(nextIndex &lt;tasks.length){
           // 运行下一个任务
           _run();
         }else if(finishCount == tasks.length){
@@ -520,7 +520,7 @@ Object.defineProperty(obj,'a',{
     createTime: '20223-06-02 20:00:00',
     html: `
 <div id="vn-container">
-<code>< Input v-model="inputVal"/>
+<code>&lt;Input v-model="inputVal"/>
 <-->
 
 import { customRef } form 'vue';
@@ -642,7 +642,7 @@ console.log(str.length) // 21
 String.prototype.sliceByPoint = function(sIndex,eIndex){
   let result = '';
   let charIndex = 0;
-  for(let i=0; i < eIndex; i++){
+  for(let i=0; i &lt;eIndex; i++){
     if(charIndex >= this.length) break;
     const pointCode = this.codePointAt(charIndex);
     if(i>=sIndex){
@@ -825,11 +825,11 @@ console.log(p2.totalPrice)</code>
     html: `
       <div id="vn-container">
 <code><-某插槽组件根据父内容更新组件，由于组件未使用响应式数据，导致不会更新->
-< template>
-  < div ref="htmltotextRef" >
-    < slot></slot>
-  < /div>
-< /template>
+&lt;template>
+  &lt;div ref="htmltotextRef" >
+    &lt;slot></slot>
+  &lt;/div>
+&lt;/template>
 
 <span class="vn-text-type-bold">javascript:</span>
 
@@ -840,7 +840,7 @@ nextTick(()=>{
 })
 
 <-解决：在父组件每次更新时重新给子组件绑定一个新的key值->
-< HtmlToText :key="new Date().getTime()+'htmlText'"></code>
+&lt;HtmlToText :key="new Date().getTime()+'htmlText'"></code>
       </div>`
   },
   {
@@ -852,7 +852,7 @@ nextTick(()=>{
     html: `
       <div id="vn-container">
         使用MutationObserver实现水印效果：
-        < div ref='contentRef'>内容< /div>
+        &lt;div ref='contentRef'>内容&lt;/div>
 <code>const contentRef = ref();
 // 水印div
 let markDiv;
@@ -986,7 +986,7 @@ imgs.forEach((img)=>{
     createTime: '20223-06-02 20:00:00',
     html: `
 <div id="vn-container">
-< div> 我的文章我的文章我的文章我的文章我的文章我的文章 < /div>
+&lt;div> 我的文章我的文章我的文章我的文章我的文章我的文章 &lt;/div>
 <code>const div = document.querySelector('div');
 div.addEventListener('copy',(e)=>{
 e.preventDefault(); // 阻止默认行为即可禁用
@@ -1005,8 +1005,8 @@ e.clipboardData.setData('text/plain','别白嫖了！');
         <ol>
           <li>判断两个数字的符号是否相同：<span class="vn-color-blue">(-4 ^ 4) >= 0</span> </li>
           <li>判断一个数是否是2的整数次幂：<span class="vn-color-blue">const isPowerOf2 = (n) => (n & (n-1) === 0;)</span> </li>
-          <li>小数求整：<span class="vn-color-blue">~~3.14; 3.14 >> 0; 3.14 << 0; 3.14 | 0 </span></li>
-          <li>求一个数的2的n次方：<span class="vn-color-blue">const powerOf2 = (n) => 1 << n;</span> <li>
+          <li>小数求整：<span class="vn-color-blue">~~3.14; 3.14 >> 0; 3.14 <&lt;0; 3.14 | 0 </span></li>
+          <li>求一个数的2的n次方：<span class="vn-color-blue">const powerOf2 = (n) => 1 <&lt;n;</span> <li>
         </ol>
       </div>`
   },
@@ -1018,22 +1018,22 @@ e.clipboardData.setData('text/plain','别白嫖了！');
     createTime: '20223-06-02 20:00:00',
     html: `
 <div id="vn-container">
-<code>< div ref="contentRef">
-    < div class="anchor-content" id="xx_anchor1">锚点内容< /div>
-    < div class="anchor-content" id="xx_anchor2">锚点内容< /div>
-    < div class="anchor-content" id="xx_anchor3">锚点内容< /div>
-< div>
-< ul>
-  < li class="anchor-item" @click="anchorTo(#xx_anchor1)">
-    < span class="active-flag">< /span>锚点1
-  < /li>
-  < li class="anchor-item" @click="anchorTo(#xx_anchor2)">
-    < span class="active-flag">< /span>锚点2
-  < /li>
-  < li class="anchor-item" @click="anchorTo(#xx_anchor3)">
-    < span class="active-flag">< /span>锚点3
-  < /li>
-< /ul>
+<code>&lt;div ref="contentRef">
+    &lt;div class="anchor-content" id="xx_anchor1">锚点内容&lt;/div>
+    &lt;div class="anchor-content" id="xx_anchor2">锚点内容&lt;/div>
+    &lt;div class="anchor-content" id="xx_anchor3">锚点内容&lt;/div>
+&lt;div>
+&lt;ul>
+  &lt;li class="anchor-item" @click="anchorTo(#xx_anchor1)">
+    &lt;span class="active-flag">&lt;/span>锚点1
+  &lt;/li>
+  &lt;li class="anchor-item" @click="anchorTo(#xx_anchor2)">
+    &lt;span class="active-flag">&lt;/span>锚点2
+  &lt;/li>
+  &lt;li class="anchor-item" @click="anchorTo(#xx_anchor3)">
+    &lt;span class="active-flag">&lt;/span>锚点3
+  &lt;/li>
+&lt;/ul>
 
 - - -css- - -
 
@@ -1080,8 +1080,8 @@ function scrolltoAnchor() {
   positionArr.sort((i, j) => j - i)
   // content容器的滚动事件
   contentRef._value.<span class="vn-color-blue">addEventListener('scroll'</span>, () => {
-    for (let i = 0; i < positionArr.length; i++) {
-      if (positionArr[i] < contentRef._value.scrollTop + 150) {
+    for (let i = 0; i &lt;positionArr.length; i++) {
+      if (positionArr[i] &lt;contentRef._value.scrollTop + 150) {
         preActive && (preActive.className = 'active-flag');
         anchorE[Math.abs(i - positionArr.length + 1)].className = 'active-flag active';
         preActive = anchorE[Math.abs(i - positionArr.length + 1)];
@@ -1114,11 +1114,55 @@ export default defineConfig({
   },
 }
 <h3>2.<span class="vn-color-blue">将静态资源文件夹放到public文件夹中</span></h3>
-public下的文件被访问，不用加相对路径；public文件夹在项目打包时不会被编译。<br/>
+public文件夹在项目打包时不会被编译。public下的文件被访问，不能省略相对路径"./"；如<br/>
 <h3>3.<span class="vn-color-blue">使用静态资源时，用import导入资源路径</span></h3>
 如： import imgURL from '/asset/xxx.png'
-< img :src="imgURL" /><br/>
+&lt;img :src="imgURL" /><br/>
 <h3>4.<span class="vn-color-blue">更多详情方法<a contenteditable="false" href="https://cn.vitejs.dev/guide/assets#explicit-url-imports" target="_blank">vite静态资源处理</a></span></h3>
+</code></pre>
+      </div>`
+  },
+  {
+    id: '1032',
+    title: '',
+    desc: '',
+    readCount: 0,
+    createTime: '20223-06-02 20:00:00',
+    html: `
+      <div id="vn-container">
+<pre><code>
+</code></pre>
+      </div>`
+  },
+  {
+    id: '1033',
+    title: 'git 常用命令',
+    desc: '',
+    readCount: 0,
+    createTime: '20223-06-02 20:00:00',
+    html: `
+      <div id="vn-container">
+<pre><code>
+添加远程仓库地址：
+git remote add origin(别名) 远程仓库地址<br/>
+查看远程仓库地址列表：
+git remote -v<br/>
+修改已配置的远程仓库地址：
+git remote set-url origin 新的远程仓库地址<br/>
+将本地仓库分支关联远程仓库分支：
+git push -u origin(远程仓库别名) master<br/>
+强制推送：
+git push origin master:master --force
+git push origin master:master -f
+拉取远程仓库指定分支代码：
+git pull origin master
+回退git版本：
+git reset --hard 版本hash值
+新建分支：
+git branch 新分支名
+创建并切换到该分支：
+git checkout -b 新分支名
+......
 </code></pre>
       </div>`
   },

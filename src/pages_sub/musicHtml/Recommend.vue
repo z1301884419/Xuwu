@@ -8,7 +8,7 @@
       <div class="card-list-row">
         <template v-for="item of bannerStore.hotRecommedData">
           <div v-if="item.bannerurl" class="card-item" :key="item.id">
-            <img :data-src="item.bannerurl" alt="">
+            <img class="lazy-img" :data-src="item.bannerurl" alt="">
             <div>{{ item.name }}</div>
           </div>
         </template>

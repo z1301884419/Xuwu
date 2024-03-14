@@ -243,6 +243,16 @@ const jsnodeMenu = [
       {title: '常用请求方法', anchor: '#ajax_about_method'},
     ]
   },
+  {
+    title: '音频/视频相关',
+    path: 'audio_video_about',
+    anchors: [
+      {title: 'html', anchor: '#jsnode_media_html'},
+      {title: '属性', anchor: '#jsnode_media_property'},
+      {title: '方法', anchor: '#jsnode_media_method'},
+      {title: '事件', anchor: '#jsnode_media_event'},
+    ]
+  },
 ]
 // 音乐播放器部分
 import { 
